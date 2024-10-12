@@ -1,4 +1,4 @@
-package Strivers.Arrays;
+package Strivers.Arrays.Easy;
 import java.util.*;
 
 public class Largest_Element {

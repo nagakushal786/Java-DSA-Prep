@@ -1,6 +1,6 @@
 // Remove duplicates from sorted array in-place and return number of unique elements in the array
 
-package Strivers.Arrays;
+package Strivers.Arrays.Easy;
 import java.util.*;
 
 public class Remove_Duplicates {
