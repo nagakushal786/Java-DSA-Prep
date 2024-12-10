@@ -29,12 +29,34 @@ public class MergeOverlappingIntervals {
         return res;
     }
 
-    public static ArrayList<int[]> mergeOverlappingIntervalsOptimal(int[][] arr){
+    public static ArrayList<int[]> mergeOverlappingIntervalsBetter(int[][] arr){
         int n=arr.length;
-        ArrayList<int[]> res=new ArrayList<>();
 
         Arrays.sort(arr, (a, b)-> Integer.compare(a[0], b[0]));
 
+        ArrayList<int[]> res=new ArrayList<>();
+        res.add(arr[0]);
+
+        for(int i=1;i<n;i++){
+            int[] last=res.get(res.size()-1);
+            int[] curr=arr[i];
+
+            if(curr[0]<=last[1]){
+                last[1]=Math.max(last[1], curr[1]);
+            }else{
+                res.add(curr);
+            }
+        }
+
+        return res;
+    }
+
+    public static ArrayList<int[]> mergeOverlappingIntervalsOptimal(int[][] arr){
+        int n=arr.length;
+
+        Arrays.sort(arr, (a, b)-> Integer.compare(a[0], b[0]));
+
+        ArrayList<int[]> res=new ArrayList<>();
         int resIdx=0;
 
         for(int i=1;i<n;i++){
@@ -58,14 +80,24 @@ public class MergeOverlappingIntervals {
 
         ArrayList<int[]> res1=new ArrayList<>();
         res1=mergeOverlappingIntervalsOptimal(arr);
+        System.out.print("Inplace sorting with O(nlogn) T.C and O(n) S.C: ");
         for(int[] ele: res1){
             System.out.print(Arrays.toString(ele)+" ");
         }
         System.out.println();
 
-        ArrayList<int[]> res=new ArrayList<>();
-        res=mergeOverlappingIntervalsBrute(arr);
-        for(int[] ele: res){
+        ArrayList<int[]> res2=new ArrayList<>();
+        res2=mergeOverlappingIntervalsBetter(arr);
+        System.out.print("Comparing with last merged interval with O(nlogn) T.C and O(n) S.C: ");
+        for(int[] ele: res2){
+            System.out.print(Arrays.toString(ele)+" ");
+        }
+        System.out.println();
+
+        ArrayList<int[]> res3=new ArrayList<>();
+        res3=mergeOverlappingIntervalsBrute(arr);
+        System.out.print("Comparing all with O(n^2) T.C and O(n) S.C: ");
+        for(int[] ele: res3){
             System.out.print(Arrays.toString(ele)+" ");
         }
         System.out.println();
