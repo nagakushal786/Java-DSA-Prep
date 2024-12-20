@@ -3,7 +3,6 @@ package GFG_160.Searching;
 public class PeakElement {
     public static int peakElementBrute(int[] arr){
         int n=arr.length;
-        int pIdx=-1;
 
         for(int i=0;i<n;i++){
             boolean left=true;
@@ -18,11 +17,11 @@ public class PeakElement {
             }
 
             if(left==true && right==true){
-                return pIdx=i;
+                return i;
             }
         }
 
-        return pIdx;
+        return -1;
     }
 
     public static int peakElementOptimal(int[] arr){
@@ -41,11 +40,10 @@ public class PeakElement {
         }
 
         int low=1, high=n-2;
-
         while(low<=high){
             int mid=low+(high-low)/2;
 
-            if(arr[mid]>arr[mid-1] && arr[mid]>arr[mid+1]){
+            if(arr[mid]>arr[mid+1] && arr[mid]>arr[mid-1]){
                 return mid;
             }
 
@@ -57,5 +55,15 @@ public class PeakElement {
         }
 
         return -1;
+    }
+
+    public static void main(String args[]){
+        int arr[]={1, 2, 7, 4, 5, 4};
+
+        int idx1=peakElementBrute(arr);
+        System.out.println(idx1);
+
+        int idx2=peakElementOptimal(arr);
+        System.out.println(idx2);
     }
 }

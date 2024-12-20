@@ -2,8 +2,8 @@ package GFG_160.Searching;
 
 public class CountOccurances {
     public static int countOccurancesBrute(int[] arr, int target){
-        int count=0;
         int n=arr.length;
+        int count=0;
 
         for(int i=0;i<n;i++){
             if(arr[i]==target){
@@ -15,53 +15,52 @@ public class CountOccurances {
     }
 
     public static int lowerBound(int[] arr, int target){
-        int lowerRes=arr.length;
         int n=arr.length;
-
         int low=0, high=n-1;
+
+        int lowB=n;
 
         while(low<=high){
             int mid=low+(high-low)/2;
+
             if(arr[mid]>=target){
-                lowerRes=mid;
+                lowB=mid;
                 high=mid-1;
             }else{
                 low=mid+1;
             }
         }
 
-        return lowerRes;
+        return lowB;
     }
 
     public static int upperBound(int[] arr, int target){
-        int upperRes=arr.length;
         int n=arr.length;
-
         int low=0, high=n-1;
+
+        int upB=n;
 
         while(low<=high){
             int mid=low+(high-low)/2;
+
             if(arr[mid]>target){
-                upperRes=mid;
+                upB=mid;
                 high=mid-1;
             }else{
                 low=mid+1;
             }
         }
 
-        return upperRes;
+        return upB;
     }
 
     public static int countOccurancesOptimal(int[] arr, int target){
-        int upper_bound=upperBound(arr, target);
-        int lower_bound=lowerBound(arr, target);
-
-        return upper_bound-lower_bound;
+        return upperBound(arr, target)-lowerBound(arr, target);
     }
 
     public static void main(String args[]){
-        int arr[]={1, 2, 2, 2, 2, 3, 4};
-        int target=2;
+        int arr[]={1, 2, 2, 2, 2, 3};
+        int target=4;
 
         int count1=countOccurancesBrute(arr, target);
         System.out.println(count1);

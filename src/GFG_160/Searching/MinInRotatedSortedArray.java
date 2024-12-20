@@ -1,10 +1,10 @@
 package GFG_160.Searching;
 
-public class MinInSortedRotatedArray {
-    public static int minEleInSortedRotatedArrayBrute(int[] arr){
+public class MinInRotatedSortedArray {
+    public static int minBrute(int[] arr){
+        int min=arr[0];
         int n=arr.length;
 
-        int min=arr[0];
         for(int i=1;i<n;i++){
             if(arr[i]<min){
                 min=arr[i];
@@ -14,12 +14,12 @@ public class MinInSortedRotatedArray {
         return min;
     }
 
-    public static int minEleInSortedRotatedArrayOptimal(int[] arr){
+    public static int minOptimal(int[] arr){
         int n=arr.length;
 
         int low=0, high=n-1;
         while(low<high){
-            if(arr[low]<arr[high]){
+            if(arr[low]<=arr[high]){
                 return arr[low];
             }
 
@@ -36,12 +36,12 @@ public class MinInSortedRotatedArray {
     }
 
     public static void main(String args[]){
-        int arr[]={5, 6, 1, 2, 3, 4};
+        int arr[]={5, 6, 7, 8, 0, 1, 2};
 
-        int minEle=minEleInSortedRotatedArrayBrute(arr);
-        System.out.println(minEle);
+        int min1=minBrute(arr);
+        System.out.println(min1);
 
-        int minEleOpt=minEleInSortedRotatedArrayOptimal(arr);
-        System.out.println(minEleOpt);
+        int min2=minOptimal(arr);
+        System.out.println(min2);
     }
 }
