@@ -1,6 +1,6 @@
 package GFG_160.Matrix;
 
-public class SearchInRowSortedArray {
+public class SearchInRowSortedMatrix {
     public static boolean binarySearch(int[] arr, int l, int r, int x){
         while(l<=r){
             int mid=l+(r-l)/2;
