@@ -8,7 +8,7 @@ class Node{
     }
 }
 
-public class RoatateLinkedListLeftK {
+public class RotateLinkedListLeftK {
     public static int length(Node head){
         int count=0;
         Node curr=head;
